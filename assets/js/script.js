@@ -12,8 +12,14 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 })
-function runGame(){
 
+/**
+ * The maingame "loop", called when script is first loaded
+ * and after the user's answer has been processed
+ */
+function runGame(){
+    let num1 = Math.floor(Math.random() * 24) + 1;
+    let num2 = Math.floor(Math.random() * 24) + 1;
 }
 function checkAnswer(){
     
