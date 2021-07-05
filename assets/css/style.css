@@ -1,7 +1,7 @@
 /* --------- Global style */
 
 body {
-    background-color: white;
+    background-color: rgb(212, 99, 99);
     font-family: "Raleway", sans-serif;
     color: #445361;
     text-align: center;
@@ -49,6 +49,13 @@ body {
     width: 60%;
     font-size: 1.2rem;
 }
+#computer{
+    background-color: rgb(66, 105, 26);
+    border: #0d1013 1px;
+    width: 100px;
+    height: 100px;
+    margin: 10%,50%;
+}
 
 .controls-area {
     width: 85%;
@@ -70,7 +77,7 @@ body {
     font-size: 1rem;
 }
 
-#answer-box {
+#answer-box,#answer-box1,#answer-box2 {
     border: none;
     color: #445361;
     display: inline-block;
