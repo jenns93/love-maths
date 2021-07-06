@@ -1,14 +1,57 @@
-
-
-   var myArray = ["Rock","Paper","Scissors","Lizard","Spock"];
+  var myArray = ["Rock","Paper","Scissors","Lizard","Spock"];
   var randomItem = myArray[Math.floor(Math.random()*myArray.length)];
+  var modal = document.getElementById("myModal");
+  
+function send(){
+  var line = "";
+  var name = document.getElementById("name").value;
+  let streak = document.getElementById("streak").innerHTML;
+  let total = document.getElementById("total");
+  total.value = streak.innerHTML;
+  rows += "<tr><td>" + name + "</td><td>" + branch + 
+  "</td><td>" + address + "</td><td> " + contact + "</td></tr> ";
+  $(rows).appendTo("#list tbody");
+  return false;
+}
+
+function counter(){
+  let score = document.getElementById('score').innerHTML;
+  let streak = document.getElementById('streak').innerHTML;
+  if (score.innerHTML==="you win"){++streak.innerHTML}
+  }
+  function gameOver(){
+  let loseCheck =document.getElementById("lose").innerHTML;
+  if (loseCheck >1){
+    modal.style.display = "block";
+    reset();
+    document.getElementById('level').innerHTML="1";
+    document.getElementById('streak').innerHTML="0";
+    
+  }
+  }
+  function gameOverBox(event){
+    if(event.gameOver===true){modal.style.display = "block";}
+  }
+
+  function levelUp(){
+    let winCheck =document.getElementById("win").innerHTML;
+    if(winCheck==="3"){++level.innerHTML
+    alert("Level Up!")
+    document.getElementById('win').innerHTML="0";
+    document.getElementById('lose').innerHTML="0";
+    document.getElementById('draw').innerHTML="0";
+    } 
+  }
 
   function reset(){
     document.getElementById('computer').innerHTML="";
     document.getElementById('output').innerHTML=""; 
     document.getElementById('score').innerHTML="";
-  }
+    document.getElementById('win').innerHTML="0";
+    document.getElementById('lose').innerHTML="0";
+    document.getElementById('draw').innerHTML="0";
 
+  }
  function rock(){
   let computer = document.getElementById("computer").innerHTML = myArray[Math.floor(Math.random()*myArray.length)];
   let rock = document.getElementById('output');
@@ -19,6 +62,10 @@
   else if (computer === myArray[2]) { score.innerHTML= "you win"; }
   else if (computer === myArray[3]) { score.innerHTML= "you win"; }
   else  { score.innerHTML= "you lose"; }
+  incrementScore();
+  gameOver();
+  levelUp();
+  counter();
  }
  function paper(){
   let computer = document.getElementById("computer").innerHTML = myArray[Math.floor(Math.random()*myArray.length)];
@@ -31,6 +78,9 @@
   else if (computer === myArray[2]) { score.innerHTML= "you lose"; }
   else if (computer === myArray[3]) { score.innerHTML= "you lose"; }
   else  { score.innerHTML= "you win"; }
+  incrementScore();
+  gameOver();
+  levelUp();
  }
  function scissors(){
   let computer = document.getElementById("computer").innerHTML = myArray[Math.floor(Math.random()*myArray.length)];
@@ -43,6 +93,9 @@
   else if (computer === myArray[2]) { score.innerHTML= "draw"; }
   else if (computer === myArray[3]) { score.innerHTML= "you win"; }
   else  { score.innerHTML= "you lose"; }
+  incrementScore();
+  gameOver();
+  levelUp();
  }
  function lizard(){
   let computer = document.getElementById("computer").innerHTML = myArray[Math.floor(Math.random()*myArray.length)];
@@ -55,6 +108,9 @@
   else if (computer === myArray[2]) { score.innerHTML= "you lose"; }
   else if (computer === myArray[3]) { score.innerHTML= "draw"; }
   else  { score.innerHTML= "you win"; }
+  incrementScore();
+  gameOver();
+  levelUp();
  }
  function spock(){
   let computer = document.getElementById("computer").innerHTML = myArray[Math.floor(Math.random()*myArray.length)];
@@ -69,44 +125,13 @@
   else  { score.innerHTML= "draw"; }
   
   incrementScore();
- }
-      
- function count(){
-   let x=1;
-   if(score.innerHTML==="you win"){win.innerHTML=++x;}
-   else if (score.innerHTML==="you lose"){lose.innerHTML=++x;}
-   else if(score.innerHTML==="draw") {draw.innerHTML=++x;}
-   else {alert="error"}
+  gameOver();
+  levelUp();
  }
  function incrementScore(){
-    
-  if(score.innerHTML ==="you win"){++win.innerHTML}
+  if(score.innerHTML ==="you win"){++win.innerHTML, ++streak.innerHTML}
   else if (score.innerHTML ==="you lose"){++lose.innerHTML}
   else if (score.innerHTML ==="draw"){++draw.innerHTML}
   else {alert="error"}
 
-}
-function check(){
-  let userAnswer = parseInt(document.getElementById("score").value);
-    let calculateAnswer = calculateCorrectAnswer();
-    let isCorrect = userAnswer === calculateAnswer[0];
-
-    if (isCorrect){
-        alert("Hey! You got it right! :D");
-        incrementScore();
-    } else {
-        alert(`Awww.... you answered ${userAnswer}. The correct answer was ${calculateAnswer[0]}!`);
-        incrementWrongAnswer();
-    }
-
-    runGame(calculateAnswer[1]);
-}
-/**
-* gets the current tally of incorrect answers from the DOM and incriments it by 1
-*/
-function incrementWrongAnswer(){
-
-  let oldScore = parseInt(document.getElementById("incorrect").innerText);
-  document.getElementById("incorrect").innerText = ++oldScore;
-  
 }
